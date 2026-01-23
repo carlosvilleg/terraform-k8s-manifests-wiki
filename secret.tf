@@ -1,7 +1,11 @@
+resource "kubernetes_namespace" "wiki" {
+  name = var.namespace
+}
+
 resource "kubernetes_secret" "mysql" {
   metadata {
     name = "mysql"
-    namespace = "wiki"
+    namespace = kubernetes_namespace.wiki.name
   }
 
   data = {
@@ -11,3 +15,4 @@ resource "kubernetes_secret" "mysql" {
 
   type = "kubernetes.io/basic-auth"
 }
+
