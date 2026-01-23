@@ -1,5 +1,7 @@
 resource "kubernetes_namespace" "wiki" {
-  name = var.namespace
+  metadata = {
+    name = var.namespace
+  }
 }
 
 resource "kubernetes_secret" "mysql" {
