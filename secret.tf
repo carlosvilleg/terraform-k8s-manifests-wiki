@@ -7,7 +7,7 @@ resource "kubernetes_namespace" "wiki" {
 resource "kubernetes_secret" "mysql" {
   metadata {
     name = "mysql"
-    namespace = kubernetes_namespace.wiki.name
+    namespace = kubernetes_namespace.wiki.metadata.name
   }
 
   data = {
