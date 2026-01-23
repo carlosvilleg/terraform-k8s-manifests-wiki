@@ -1,5 +1,5 @@
 resource "kubernetes_namespace" "wiki" {
-  metadata = {
+  metadata {
     name = var.namespace
   }
 }
