@@ -1,6 +1,6 @@
 
 resource "kubernetes_manifest" "base" {
-	manifest = yamldecode(templatefile("${path.module}/base.yaml.tftpl", {
+	manifest = provider::kubernetes::manifest_decode_multi(templatefile("${path.module}/base.yaml.tftpl", {
     k8s_namespace = var.namespace,
     mysql_user = "",
     mysql_password = "",
