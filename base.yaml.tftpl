@@ -7,10 +7,10 @@ spec: {}
 ---
 apiVersion: v1
 data:
-  username: "${base64(mysql_user)}"
-  password: "${base64(mysql_password)}"
-  database: "${base64(mysql_database)}"
-  host: "${base64(mysql_host)}"
+  username: "${base64encode(mysql_user)}"
+  password: "${base64encode(mysql_password)}"
+  database: "${base64encode(mysql_database)}"
+  host: "${base64encode(mysql_host)}"
 kind: Secret
 metadata:
   name: mysql
