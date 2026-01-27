@@ -15,3 +15,47 @@ kind: Secret
 metadata:
   name: mysql
   namespace: "${k8s_namespace}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wiki
+  name: wiki
+  namespace: wiki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wiki
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: wiki
+    spec:
+      containers:
+      - image: mediawiki:stable
+        name: mediawiki
+        env:
+        - name: MYSQL_HOST
+          valueFrom: 
+            secretKeyRef:
+              name: mysql
+              key: mysql_host
+        - name: MYSQL_USER
+          valueFrom: 
+            secretKeyRef:
+              name: mysql
+              key: mysql_user
+        - name: MYSQL_DATABASE
+          valueFrom: 
+            secretKeyRef:
+              name: mysql
+              key: mysql_database
+        - name: MYSQL_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: mysql
+              key: mysql_password
+        resources: {}
