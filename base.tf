@@ -6,7 +6,7 @@ resource "kubernetes_manifest" "base" {
     mysql_password = "",
     mysql_database = "",
     mysql_host = "",
-    })): format("%s/%s/%s/%s", r.kind, r.apiVersion, r.metadata.namespace, r.metadata.name) => r}
+    })): format("%s/%s/%s/%s", r.kind, r.apiVersion, try(r.metadata.namespace, "-"), r.metadata.name) => r}
     manifest = each.value
 }
 
