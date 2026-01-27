@@ -1,4 +1,5 @@
 
+/*
 data "aws_eks_cluster" "cluster" {
   name = "example"
 }
@@ -26,4 +27,6 @@ output "eks_token" {
   value = data.aws_eks_cluster_auth.cluster.token
   sensitive = true
 }
+
+*/
 
