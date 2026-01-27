@@ -42,20 +42,20 @@ spec:
           valueFrom: 
             secretKeyRef:
               name: mysql
-              key: mysql_host
+              key: host
         - name: MYSQL_USER
           valueFrom: 
             secretKeyRef:
               name: mysql
-              key: mysql_user
+              key: username
         - name: MYSQL_DATABASE
           valueFrom: 
             secretKeyRef:
               name: mysql
-              key: mysql_database
+              key: database
         - name: MYSQL_PASSWORD
           valueFrom: 
             secretKeyRef:
               name: mysql
-              key: mysql_password
+              key: password
         resources: {}
