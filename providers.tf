@@ -24,5 +24,6 @@ output "eks_ca" {
 // FIXME, just troubleshooting
 output "eks_token" {
   value = data.aws_eks_cluster_auth.cluster.token
+  sensitive = true
 }
 
