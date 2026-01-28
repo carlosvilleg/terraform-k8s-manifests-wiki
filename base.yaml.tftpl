@@ -59,3 +59,22 @@ spec:
               name: mysql
               key: password
         resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiki
+  namespace: ${k8s_namespace}
+  annotations:
+    kubernetes.io/aws-load-balancer-type: external 
+    kubernetes.io/aws-load-balancer-scheme: internet-facing
+    kubernetes.io/aws-load-balancer-nlb-target-type: ip
+spec:
+  type: LoadBalancer
+  selector:
+    app: wiki
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP
