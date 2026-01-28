@@ -1,5 +1,4 @@
 
-/*
 data "aws_eks_cluster" "cluster" {
   name = "example"
 }
@@ -28,5 +27,4 @@ output "eks_token" {
   sensitive = true
 }
 
-*/
 
