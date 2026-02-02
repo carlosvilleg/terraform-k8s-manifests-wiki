@@ -1345,12 +1345,6 @@ spec:
     storage: false
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: null
-  storedVersions: null
 ---
 #
 # config/crd/standard/gateway.networking.k8s.io_gatewayclasses.yaml
@@ -1864,12 +1858,6 @@ spec:
     storage: false
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: null
-  storedVersions: null
 ---
 #
 # config/crd/standard/gateway.networking.k8s.io_gateways.yaml
@@ -4121,12 +4109,6 @@ spec:
     storage: false
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: null
-  storedVersions: null
 ---
 #
 # config/crd/standard/gateway.networking.k8s.io_grpcroutes.yaml
@@ -6195,12 +6177,6 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: null
-  storedVersions: null
 ---
 #
 # config/crd/standard/gateway.networking.k8s.io_httproutes.yaml
@@ -11854,12 +11830,6 @@ spec:
     storage: false
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: null
-  storedVersions: null
 ---
 #
 # config/crd/standard/gateway.networking.k8s.io_referencegrants.yaml
@@ -12048,9 +12018,3 @@ spec:
     served: true
     storage: true
     subresources: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: null
-  storedVersions: null
