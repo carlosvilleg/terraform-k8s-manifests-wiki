@@ -1,5 +1,5 @@
 
-resource "kubernetes_manifest" "base" {
+resource "kubernetes_manifest" "gateway" {
   for_each = {for r in provider::kubernetes::manifest_decode_multi(templatefile("${path.module}/standard-install.yaml", {
     url = var.url,
     env = var.suffix,
