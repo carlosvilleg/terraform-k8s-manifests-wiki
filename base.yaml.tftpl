@@ -20,19 +20,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: wiki
-  name: wiki
+    app: wiki-${env}
+  name: wiki-${env}
   namespace: "${k8s_namespace}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wiki
+      app: wiki-${env}
   strategy: {}
   template:
     metadata:
       labels:
-        app: wiki
+        app: wiki-${env}
     spec:
       containers:
       - image: mediawiki:stable
@@ -63,18 +63,40 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wiki
+  name: wiki-${env}
   namespace: ${k8s_namespace}
-  annotations:
-    kubernetes.io/aws-load-balancer-type: external 
-    kubernetes.io/aws-load-balancer-scheme: internet-facing
-    kubernetes.io/aws-load-balancer-nlb-target-type: ip
+  labels:
+    app: wiki-${env}
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
-    app: wiki
+    app: wiki-${env}
   ports:
   - name: http
     port: 80
     targetPort: 80
     protocol: TCP
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: wiki-${env}
+  namespace: ${k8s_namespace}
+  labels:
+    app: wiki-${env}
+spec:
+  parentRefs:
+    - name: gateway
+      sectionName: http
+  hostnames:
+    - ${url}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: wiki-${env}
+          port: 80
+          weight: 1
+
