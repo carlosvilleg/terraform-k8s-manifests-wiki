@@ -5,6 +5,12 @@ variable "namespace" {
   description = "K8s namespace"
 }
 
+variable "eks_cluster_name" {
+	type = string
+	default = "example"
+  description = "Existing EKS cluster name"
+}
+
 variable "create_namespace" {
   type = bool
   default = true

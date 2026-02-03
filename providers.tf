@@ -1,10 +1,10 @@
 
 data "aws_eks_cluster" "cluster" {
-  name = "example"
+  name = var.eks_cluster_name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = "example"
+  name = var.eks_cluster_name
 }
 
 provider "kubernetes" {
