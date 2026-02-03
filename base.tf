@@ -3,6 +3,7 @@ resource "kubernetes_manifest" "base" {
   for_each = {for r in provider::kubernetes::manifest_decode_multi(templatefile("${path.module}/base.yaml.tftpl", {
     url = var.url,
     env = var.suffix,
+    create_namespace = var.create_namespace,
     k8s_namespace = var.namespace,
     mysql_user = var.mysql_user,
     mysql_password = nonsensitive(var.mysql_password),

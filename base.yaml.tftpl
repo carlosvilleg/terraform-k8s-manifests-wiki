@@ -1,9 +1,11 @@
+%{if create_namespace }
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: "${k8s_namespace}"
 spec: {}
+%{endif}
 ---
 apiVersion: v1
 data:
@@ -20,19 +22,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: wiki
-  name: wiki
+    app: "wiki-${env}"
+  name: "wiki-${env}"
   namespace: "${k8s_namespace}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wiki
+      app: "wiki-${env}"
   strategy: {}
   template:
     metadata:
       labels:
-        app: wiki
+        app: "wiki-${env}"
     spec:
       containers:
       - image: mediawiki:stable
@@ -63,7 +65,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wiki
+  name: "wiki-${env}"
   namespace: ${k8s_namespace}
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: external
@@ -75,7 +77,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: wiki
+    app: "wiki-${env}"
   ports:
   - name: http
     port: 80
