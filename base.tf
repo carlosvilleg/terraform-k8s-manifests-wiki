@@ -1,5 +1,4 @@
 
-/*
 resource "kubernetes_manifest" "base" {
   for_each = {for r in provider::kubernetes::manifest_decode_multi(templatefile("${path.module}/base.yaml.tftpl", {
     url = var.url,
@@ -12,4 +11,4 @@ resource "kubernetes_manifest" "base" {
     })): format("%s/%s/%s/%s", r.kind, r.apiVersion, try(r.metadata.namespace, "-"), r.metadata.name) => r}
     manifest = each.value
 }
-*/
+

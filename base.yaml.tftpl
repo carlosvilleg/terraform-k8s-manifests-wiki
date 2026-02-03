@@ -66,9 +66,12 @@ metadata:
   name: wiki
   namespace: ${k8s_namespace}
   annotations:
-    kubernetes.io/aws-load-balancer-type: external 
-    kubernetes.io/aws-load-balancer-scheme: internet-facing
-    kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    #kubernetes.io/aws-load-balancer-type: external
+    #kubernetes.io/aws-load-balancer-scheme: internet-facing
+    #kubernetes.io/aws-load-balancer-nlb-target-type: ip
 spec:
   type: LoadBalancer
   selector:
